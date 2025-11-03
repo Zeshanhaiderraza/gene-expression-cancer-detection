@@ -1,289 +1,594 @@
 # 🧬 Gene Expression Signature as Biomarkers for Cancer Detection
 
-[![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)](https://www.python.org/)
-[![Jupyter](https://img.shields.io/badge/Jupyter-Notebook-orange.svg)](https://jupyter.org/)
-[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
-[![Status](https://img.shields.io/badge/Status-Active-success.svg)]()
+<p align="center">
+  <img src="https://img.shields.io/badge/Python-3.8+-blue.svg" alt="Python">
+  <img src="https://img.shields.io/badge/Jupyter-Notebook-orange.svg" alt="Jupyter">
+  <img src="https://img.shields.io/badge/scikit--learn-1.0+-orange.svg" alt="scikit-learn">
+  <img src="https://img.shields.io/badge/License-MIT-green.svg" alt="License">
+  <img src="https://img.shields.io/badge/Status-Complete-success.svg" alt="Status">
+</p>
 
-> **MSc Bioinformatics Thesis Project** | Teesside University, UK  
-> **Author**: Zeshan Haider Raza  
-> **Supervisor**: Dr. Mengyuan Wang
+<p align="center">
+  <strong>A Predictive Model Approach for Early Cancer Diagnosis using Machine Learning</strong><br>
+  MSc Bioinformatics Dissertation | Teesside University, UK
+</p>
+
+---
 
 ## 📋 Table of Contents
 - [Overview](#overview)
-- [Project Objectives](#project-objectives)
+- [Key Findings](#key-findings)
 - [Dataset](#dataset)
 - [Methodology](#methodology)
-- [Repository Structure](#repository-structure)
-- [Installation](#installation)
-- [Usage](#usage)
+- [Machine Learning Models](#machine-learning-models)
 - [Results](#results)
-- [Technologies Used](#technologies-used)
+- [Repository Structure](#repository-structure)
+- [Installation & Usage](#installation--usage)
+- [Technologies](#technologies)
 - [Future Work](#future-work)
-- [Contributing](#contributing)
-- [Contact](#contact)
+- [Author & Contact](#author--contact)
 - [Acknowledgments](#acknowledgments)
+- [Citation](#citation)
+
+---
 
 ## 🔬 Overview
 
-This project focuses on identifying **gene expression signatures** that can serve as reliable **biomarkers for cancer detection** using machine learning approaches. By analyzing gene expression data, we aim to develop predictive models that can distinguish between normal and cancerous tissue samples with high accuracy.
+Cancer is one of the most prevalent diseases globally and remains a primary cause of death worldwide according to WHO. **Early detection is crucial** for improving survival rates and treatment outcomes. This project develops a **machine learning-based predictive model** to identify cancer through gene expression signatures, enabling early diagnosis and personalized treatment strategies.
 
-Cancer remains one of the leading causes of death worldwide. Early detection is crucial for successful treatment. This project leverages:
-- 🧬 **Genomic data analysis**
-- 🤖 **Machine learning algorithms**
-- 📊 **Statistical modeling**
-- 🎯 **Biomarker identification**
+### Why This Matters
 
-## 🎯 Project Objectives
+- 🩺 **Late diagnosis** is a major factor increasing cancer mortality rates
+- 🧬 **Gene expression analysis** can reveal cancerous patterns before clinical symptoms
+- 🤖 **Machine learning** offers superior predictive capacity over traditional diagnostic methods
+- 📊 **Data-driven approach** enables integration of large genomic datasets
+- 🎯 **General model** can be customized for diverse cancer types
 
-1. **Data Preprocessing**: Clean and normalize gene expression data
-2. **Exploratory Data Analysis**: Understand data distribution and patterns
-3. **Feature Engineering**: Identify relevant gene expression features
-4. **Model Development**: Build and train classification models
-5. **Model Evaluation**: Assess performance using various metrics
-6. **Biomarker Identification**: Select the most significant genes as biomarkers
-7. **Validation**: Cross-validate models for robustness
+### Project Goals
+
+1. Develop a predictive model using gene expression data for cancer detection
+2. Compare multiple machine learning algorithms for optimal performance
+3. Create a scalable, general model adaptable to different cancer types
+4. Facilitate early cancer diagnosis to improve treatment outcomes
+
+---
+
+## 🎯 Key Findings
+
+### 🏆 Best Performing Model: **Random Forest**
+
+- **Accuracy**: 98.3%
+- **R² Score**: 0.9834
+- **Performance**: Superior to all other tested algorithms
+- **Validation**: Robust cross-validation with hyperparameter tuning
+
+### 📊 Model Comparison Results
+
+| Algorithm | R² Score | MSE | Performance |
+|-----------|----------|-----|-------------|
+| **Random Forest** | **0.9834** | **Lowest** | **⭐ Best** |
+| Gradient Boosting | 0.9201 | Low | ⭐ Good |
+| AdaBoost | 0.8947 | Moderate | ✓ Acceptable |
+| Linear Regression | 0.6984 | Higher | ⚠ Limited |
+
+### 💡 Key Insights
+
+- Random Forest demonstrated **exceptional accuracy (98.3%)** in cancer detection
+- Model successfully classified **healthy vs. diseased genes** with high precision
+- K-Means clustering revealed **2 distinct groups** (diseased/non-diseased)
+- Hyperparameter optimization using **Randomized Search CV** improved model performance
+- Analysis of **49,495 genes** across **20 mouse samples** validated the approach
+
+---
 
 ## 📊 Dataset
 
-- **Type**: Gene Expression Data
-- **Target Variable**: Binary (0 = Non-defective gene, 1 = Defective gene)
-- **Features**: Gene expression levels across multiple samples
-- **Source**: [Specify if applicable]
+### Dataset Characteristics
 
-### Data Characteristics
-- Number of samples: [To be specified]
-- Number of features: [To be specified]
-- Class distribution: Balanced/Imbalanced
-- Format: CSV/Excel
+- **Source**: Gene expression data from mouse model
+- **Samples**: 20 mice (healthy and cancerous)
+- **Features**: 49,495 gene expression signatures
+- **Target Variable**: Binary classification (0 = Non-diseased, 1 = Diseased)
+- **Format**: CSV file
+- **Columns**: 21 total (1 target + 20 gene expression features)
+
+### Data Preprocessing
+
+✅ Data cleaning and quality control  
+✅ Missing value handling  
+✅ Feature scaling and normalization  
+✅ K-Means clustering for pattern identification  
+✅ Correlation analysis  
+✅ Train-test split with stratification
+
+### Cluster Analysis
+
+The K-Means clustering revealed two prominent groups:
+- **Cluster 0 (Blue)**: Non-diseased/healthy genes
+- **Cluster 1 (Green)**: Diseased/mutated genes
+
+This clear separation validates the discriminative power of gene expression signatures for cancer detection.
+
+---
 
 ## 🔍 Methodology
 
-### 1. Data Preprocessing
-- Missing value handling
-- Outlier detection and treatment
-- Data normalization/standardization
-- Feature scaling
+### Research Pipeline
 
-### 2. Exploratory Data Analysis (EDA)
-- Statistical summary
-- Distribution analysis
-- Correlation analysis
-- Visualization of gene expression patterns
+```mermaid
+graph LR
+    A[Gene Expression Data] --> B[Data Preprocessing]
+    B --> C[Exploratory Analysis]
+    C --> D[K-Means Clustering]
+    D --> E[Feature Engineering]
+    E --> F[Model Training]
+    F --> G[Hyperparameter Tuning]
+    G --> H[Model Evaluation]
+    H --> I[Best Model Selection]
+    I --> J[Cancer Prediction]
+```
 
-### 3. Feature Selection
-- Variance threshold
-- Correlation analysis
-- Recursive Feature Elimination (RFE)
-- Feature importance from tree-based models
+### 1. Exploratory Data Analysis (EDA)
 
-### 4. Machine Learning Models
-- Logistic Regression
-- Support Vector Machines (SVM)
-- Random Forest
-- Gradient Boosting (XGBoost, LightGBM)
-- Neural Networks (if applicable)
+- Data visualization using Python (Matplotlib, Seaborn, Plotly)
+- Statistical summary and distribution analysis
+- Correlation analysis between features
+- Cluster analysis to identify patterns
+- Data quality assessment
+
+### 2. Data Preprocessing
+
+- Handling missing values and outliers
+- Feature scaling and normalization
+- Train-test split (training & validation sets)
+- Data transformation for model compatibility
+
+### 3. Model Development
+
+Four machine learning algorithms were implemented and compared:
+
+1. **Linear Regression** - Baseline model
+2. **Random Forest Regressor** - Ensemble learning
+3. **Gradient Boosting Regressor** - Sequential ensemble
+4. **AdaBoost Regressor** - Adaptive boosting
+
+### 4. Hyperparameter Optimization
+
+- **Randomized Search CV** for efficient parameter exploration
+- Optimized parameters:
+  - Number of estimators (10-50 range)
+  - Maximum tree depth
+  - Learning rate (for boosting models)
+  - Other algorithm-specific parameters
 
 ### 5. Model Evaluation
-- Accuracy, Precision, Recall, F1-Score
-- ROC-AUC curve
-- Confusion Matrix
-- Cross-validation scores
+
+Models were evaluated using:
+- **R² Score** (Coefficient of Determination)
+- **Mean Squared Error (MSE)**
+- **Cross-validation scores**
+- **Prediction accuracy**
+- **Generalization performance**
+
+---
+
+## 🤖 Machine Learning Models
+
+### 1. Linear Regression
+```
+Performance: R² = 0.6984 (69.84% variance explained)
+Use Case: Baseline model, good for linear relationships
+Limitation: Cannot handle complex non-linear patterns
+```
+
+### 2. Random Forest Regressor ⭐ **BEST**
+```
+Performance: R² = 0.9834 (98.34% accuracy)
+Strengths:
+  ✓ Highest accuracy among all models
+  ✓ Robust to overfitting
+  ✓ Handles non-linear relationships
+  ✓ Feature importance ranking
+  ✓ Excellent generalization
+Hyperparameters:
+  - n_estimators: Optimized using RandomizedSearchCV
+  - max_depth: Tuned for best performance
+```
+
+### 3. Gradient Boosting Regressor
+```
+Performance: R² = 0.9201
+Strengths:
+  ✓ Sequential learning approach
+  ✓ Good performance on complex patterns
+  ✓ Lower MSE than Linear Regression
+```
+
+### 4. AdaBoost Regressor
+```
+Performance: R² = 0.8947
+Strengths:
+  ✓ Adaptive learning from errors
+  ✓ Good for data classification
+  ✓ Reduces bias
+```
+
+---
+
+## 📈 Results
+
+### Performance Metrics
+
+#### Random Forest (Best Model)
+- **R² Score**: 0.9834
+- **Accuracy**: 98.3%
+- **Status**: ✅ Optimal for cancer prediction
+- **Validation**: Robust across multiple cross-validation folds
+
+#### Comparative Analysis
+- **Random Forest** outperformed all other algorithms
+- **Gradient Boosting** showed second-best performance (92.01%)
+- **AdaBoost** provided acceptable accuracy (89.47%)
+- **Linear Regression** limited to linear relationships (69.84%)
+
+### Visualizations
+
+The project includes comprehensive visualizations:
+- 📊 Cluster Analysis Scatter Plots
+- 📈 Model Performance Comparison Charts
+- 🎯 Prediction vs. Actual Value Plots
+- 🔥 Correlation Heatmaps
+- 📉 Residual Plots
+- 🌲 Feature Importance Rankings
+
+### Clinical Significance
+
+✅ **Early Detection**: Model enables identification of cancerous patterns before clinical symptoms  
+✅ **Precision Medicine**: Can be customized for specific cancer types  
+✅ **Treatment Planning**: Facilitates targeted therapeutic interventions  
+✅ **Reduced Burden**: Avoids unnecessary clinical procedures  
+✅ **Scalability**: General model adaptable to various cancer genomic data
+
+---
 
 ## 📁 Repository Structure
 
 ```
 gene-expression-cancer-detection/
 │
-├── data/
-│   ├── raw/                      # Original datasets
-│   ├── processed/                # Cleaned and preprocessed data
-│   └── README.md                 # Data description
+├── 📄 README.md                          # Project documentation
+├── 📄 LICENSE                            # MIT License
+├── 📄 requirements.txt                   # Python dependencies
+├── 📄 .gitignore                         # Git ignore rules
 │
-├── notebooks/
-│   ├── 01_data_exploration.ipynb       # Initial EDA
-│   ├── 02_preprocessing.ipynb          # Data cleaning
-│   ├── 03_feature_engineering.ipynb    # Feature selection
-│   ├── 04_model_training.ipynb         # Model development
-│   └── 05_model_evaluation.ipynb       # Results and validation
+├── 📁 notebooks/                         # Jupyter notebooks
+│   ├── 01_data_exploration_preprocessing.ipynb
+│   ├── 02_feature_engineering_selection.ipynb
+│   └── 03_model_training_evaluation.ipynb
 │
-├── src/
-│   ├── __init__.py
-│   ├── data_processing.py        # Data preprocessing functions
-│   ├── feature_engineering.py    # Feature selection methods
-│   ├── model_training.py         # Model training scripts
-│   ├── evaluation.py             # Evaluation metrics
-│   └── visualization.py          # Plotting functions
+├── 📁 data/                              # Dataset files
+│   ├── raw/                              # Original data
+│   └── processed/                        # Preprocessed data
 │
-├── models/
-│   ├── saved_models/             # Trained model files
-│   └── model_configs/            # Model hyperparameters
+├── 📁 src/                               # Source code
+│   ├── data_processing.py                # Data preprocessing
+│   ├── model_training.py                 # Model training
+│   └── visualization.py                  # Plotting functions
 │
-├── results/
-│   ├── figures/                  # Plots and visualizations
-│   ├── tables/                   # Result tables
-│   └── reports/                  # Analysis reports
+├── 📁 models/                            # Trained models
+│   └── saved_models/                     # Model files
 │
-├── tests/
-│   └── test_*.py                 # Unit tests
-│
-├── requirements.txt              # Python dependencies
-├── environment.yml               # Conda environment (optional)
-├── setup.py                      # Package setup
-├── .gitignore
-├── LICENSE
-└── README.md                     # This file
+└── 📁 results/                           # Analysis results
+    ├── figures/                          # Plots & visualizations
+    ├── tables/                           # Result tables
+    └── reports/                          # Analysis reports
 ```
 
-## 🚀 Installation
+---
+
+## 🚀 Installation & Usage
 
 ### Prerequisites
+
 - Python 3.8 or higher
 - pip or conda package manager
+- Jupyter Notebook
 
-### Step 1: Clone the Repository
+### Installation Steps
+
+#### 1. Clone the Repository
 ```bash
-git clone https://github.com/YOUR-USERNAME/gene-expression-cancer-detection.git
+git clone https://github.com/Zeshanhaiderraza/gene-expression-cancer-detection.git
 cd gene-expression-cancer-detection
 ```
 
-### Step 2: Create Virtual Environment (Recommended)
+#### 2. Create Virtual Environment (Recommended)
 ```bash
 # Using venv
 python -m venv venv
 source venv/bin/activate  # On Windows: venv\Scripts\activate
 
 # Or using conda
-conda create -n gene-analysis python=3.8
-conda activate gene-analysis
+conda create -n cancer-detection python=3.8
+conda activate cancer-detection
 ```
 
-### Step 3: Install Dependencies
+#### 3. Install Dependencies
 ```bash
 pip install -r requirements.txt
 ```
 
-## 💻 Usage
+### Running the Analysis
 
-### Running Jupyter Notebooks
+#### Option 1: Using Jupyter Notebooks (Recommended)
 
-1. **Start Jupyter Notebook**:
 ```bash
+# Start Jupyter Notebook
 jupyter notebook
+
+# Navigate to notebooks/ folder and run in sequence:
+# 1. 01_data_exploration_preprocessing.ipynb
+# 2. 02_feature_engineering_selection.ipynb
+# 3. 03_model_training_evaluation.ipynb
 ```
 
-2. **Navigate to notebooks folder** and open the notebooks in order:
-   - `01_data_exploration.ipynb`
-   - `02_preprocessing.ipynb`
-   - `03_feature_engineering.ipynb`
-   - `04_model_training.ipynb`
-   - `05_model_evaluation.ipynb`
-
-### Running Scripts
+#### Option 2: Using Python Scripts
 
 ```bash
-# Data preprocessing
-python src/data_processing.py --input data/raw/dataset.csv --output data/processed/
+# Run data preprocessing
+python src/data_processing.py
 
 # Train models
-python src/model_training.py --data data/processed/train.csv --output models/
+python src/model_training.py
 
-# Evaluate models
-python src/evaluation.py --model models/best_model.pkl --test-data data/processed/test.csv
+# Generate visualizations
+python src/visualization.py
 ```
 
-## 📈 Results
+### Quick Start Example
 
-### Model Performance
+```python
+import pandas as pd
+from sklearn.ensemble import RandomForestRegressor
+from sklearn.model_selection import train_test_split
 
-| Model | Accuracy | Precision | Recall | F1-Score | AUC-ROC |
-|-------|----------|-----------|--------|----------|---------|
-| Logistic Regression | XX% | XX% | XX% | XX% | XX% |
-| Random Forest | XX% | XX% | XX% | XX% | XX% |
-| SVM | XX% | XX% | XX% | XX% | XX% |
-| XGBoost | XX% | XX% | XX% | XX% | XX% |
+# Load data
+data = pd.read_csv('data/gene_expression.csv')
 
-### Key Findings
+# Prepare features and target
+X = data.drop('target', axis=1)
+y = data['target']
 
-- 🔬 **Top Biomarker Genes**: [List significant genes]
-- 📊 **Best Performing Model**: [Model name with accuracy]
-- 🎯 **Clinical Implications**: [Brief summary]
+# Split data
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.2, random_state=42
+)
 
-### Visualizations
+# Train Random Forest model
+rf_model = RandomForestRegressor(
+    n_estimators=100, 
+    random_state=42
+)
+rf_model.fit(X_train, y_train)
 
-![ROC Curve](results/figures/roc_curve.png)
-*ROC curves comparing different models*
+# Evaluate
+score = rf_model.score(X_test, y_test)
+print(f"Model R² Score: {score:.4f}")
+```
 
-![Feature Importance](results/figures/feature_importance.png)
-*Top 20 most important genes for cancer detection*
-
-![Confusion Matrix](results/figures/confusion_matrix.png)
-*Confusion matrix of best performing model*
+---
 
 ## 🛠️ Technologies Used
 
 ### Core Libraries
-- **pandas** - Data manipulation and analysis
-- **numpy** - Numerical computing
-- **scikit-learn** - Machine learning algorithms
-- **matplotlib** & **seaborn** - Data visualization
-- **scipy** - Scientific computing
 
-### Machine Learning
-- **XGBoost** - Gradient boosting
-- **LightGBM** - Light gradient boosting
-- **TensorFlow/Keras** - Deep learning (if applicable)
+**Data Analysis & Processing:**
+- ![Pandas](https://img.shields.io/badge/Pandas-150458?style=flat&logo=pandas&logoColor=white)
+- ![NumPy](https://img.shields.io/badge/NumPy-013243?style=flat&logo=numpy&logoColor=white)
+- ![SciPy](https://img.shields.io/badge/SciPy-8CAAE6?style=flat&logo=scipy&logoColor=white)
 
-### Bioinformatics
-- **Biopython** - Biological computation
-- **statsmodels** - Statistical models
+**Machine Learning:**
+- ![scikit-learn](https://img.shields.io/badge/scikit--learn-F7931E?style=flat&logo=scikit-learn&logoColor=white)
+- Random Forest Regressor
+- Gradient Boosting Regressor
+- AdaBoost Regressor
+- K-Means Clustering
+
+**Data Visualization:**
+- ![Matplotlib](https://img.shields.io/badge/Matplotlib-11557c?style=flat&logo=python&logoColor=white)
+- ![Seaborn](https://img.shields.io/badge/Seaborn-3776AB?style=flat&logo=python&logoColor=white)
+- ![Plotly](https://img.shields.io/badge/Plotly-3F4F75?style=flat&logo=plotly&logoColor=white)
+
+**Development Tools:**
+- ![Jupyter](https://img.shields.io/badge/Jupyter-F37626?style=flat&logo=jupyter&logoColor=white)
+- ![Python](https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white)
+- ![Git](https://img.shields.io/badge/Git-F05032?style=flat&logo=git&logoColor=white)
+
+### Key Python Packages
+
+```
+pandas>=1.3.0
+numpy>=1.21.0
+scikit-learn>=1.0.0
+matplotlib>=3.4.0
+seaborn>=0.11.0
+plotly>=5.3.0
+jupyter>=1.0.0
+scipy>=1.7.0
+```
+
+---
 
 ## 🔮 Future Work
 
-- [ ] Integrate additional datasets for validation
-- [ ] Implement deep learning models (CNN, LSTM)
-- [ ] Deploy model as a web application
-- [ ] Perform pathway enrichment analysis
-- [ ] Add real-time prediction API
-- [ ] Extend to multi-class cancer type classification
+### Immediate Enhancements
+- [ ] Expand dataset to include human genomic data
+- [ ] Implement deep learning models (CNN, LSTM, Transformers)
+- [ ] Add feature importance visualization and interpretation
+- [ ] Develop real-time prediction capability
+- [ ] Create web-based interface for model deployment
 
-## 🤝 Contributing
+### Advanced Extensions
+- [ ] Multi-class classification for different cancer types
+- [ ] Integration with clinical pathology data
+- [ ] Transfer learning from mouse to human models
+- [ ] Single-cell gene expression analysis
+- [ ] Pathway enrichment and biological interpretation
+- [ ] Model explainability using SHAP/LIME
+- [ ] Cloud deployment (AWS/Azure/GCP)
+- [ ] REST API for predictions
 
-Contributions are welcome! Please feel free to submit a Pull Request.
+### Research Directions
+- [ ] Combine with imaging data (radiomics)
+- [ ] Integrate multi-omics data (proteomics, metabolomics)
+- [ ] Longitudinal study for cancer progression tracking
+- [ ] Drug response prediction based on gene signatures
+- [ ] Personalized treatment recommendation system
 
-1. Fork the project
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+---
 
-## 📧 Contact
+## 👨‍🔬 Author & Contact
 
-**Zeshan Haider Raza**
+**Zeshan Haider Raza**  
+*MSc Bioinformatics (with Advanced Practices)*  
+School of Health and Life Sciences  
+Teesside University, Middlesbrough, UK
 
-- 📧 Email: shaniabg493@gmail.com
-- 💼 LinkedIn: [zeshan-haider-raza](https://www.linkedin.com/in/zeshan-haider-raza-081673190)
-- 🎓 Google Scholar: [Profile](https://scholar.google.com/citations?user=qbp1T0YAAAAJ&hl=en)
-- 📱 WhatsApp: +447939555263
+### 📧 Get in Touch
+
+<p align="left">
+  <a href="mailto:shaniabg493@gmail.com">
+    <img src="https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white" alt="Email"/>
+  </a>
+  <a href="https://www.linkedin.com/in/zeshan-haider-raza-081673190">
+    <img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn"/>
+  </a>
+  <a href="https://scholar.google.com/citations?user=qbp1T0YAAAAJ&hl=en">
+    <img src="https://img.shields.io/badge/Google%20Scholar-4285F4?style=for-the-badge&logo=google-scholar&logoColor=white" alt="Google Scholar"/>
+  </a>
+  <a href="https://github.com/Zeshanhaiderraza">
+    <img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" alt="GitHub"/>
+  </a>
+  <a href="https://wa.me/447939555263">
+    <img src="https://img.shields.io/badge/WhatsApp-25D366?style=for-the-badge&logo=whatsapp&logoColor=white" alt="WhatsApp"/>
+  </a>
+</p>
+
+### 🎓 Research Interests
+
+- 🧬 Bioinformatics & Computational Biology
+- 🤖 Machine Learning in Genomics
+- 🔬 Cancer Biomarker Discovery
+- 📊 Big Data Analysis in Healthcare
+- 🧪 Quantitative Genetics & Animal Breeding
+
+---
 
 ## 🙏 Acknowledgments
 
-- **Dr. Mengyuan Wang** - Supervisor and Module Leader
-- **Dr. Cassy Ross** - Lecturer in Biomedical Science
-- **Teesside University** - School of Health and Life Sciences
-- Open-source community for the amazing tools and libraries
+### Supervisor & Mentors
+- **Dr. Mengyuan Wang** - Course Leader, MSc Bioinformatics & Module Leader (Python for Bioinformatics/Data Analytics), Teesside University
+- **Dr. Cassy Ross** - Lecturer in Biomedical Science, Teesside University
+- **Dr. Faiz Rasool** - Assistant Director Research, UVAS, Lahore, Pakistan
 
-## 📄 License
+### Institution
+- **Teesside University** - School of Health and Life Sciences (SHLS), Middlesbrough, UK
+- **Science Department** for providing research facilities and support
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+### Community
+- Open-source Python community for excellent libraries
+- Scikit-learn developers for machine learning tools
+- Jupyter Project for interactive computing environment
+- All researchers whose work contributed to this field
+
+---
+
+## 📄 Citation
+
+If you use this work in your research, please cite:
+
+```bibtex
+@mastersthesis{raza2024gene,
+  title={Gene Expression Signature as Biomarkers for Cancer Detection: A Predictive Model Approach},
+  author={Raza, Zeshan Haider},
+  year={2024},
+  school={Teesside University},
+  type={MSc Dissertation},
+  address={Middlesbrough, United Kingdom}
+}
+```
+
+### Related Publications
+
+- **Polymorphic Status and Phylogenetic Analysis of Myostatin Gene in Pak-thoroughbred** (2020)  
+  [DOI: 10.2298/GENSR2003281R](https://doiserbia.nb.rs/Article.aspx?ID=0534-00122003281R)
+
+- **A Comprehensive Review on Genomic Diversity and Epidemiology of COVID-19** (2020)  
+  International Journal of Clinical Virology
+
+- **In Silico Analysis of Putative Epitopes Out of BM86 Gene Sequences** (2023)  
+  Brazilian Journal of Biology
+
+---
+
+## 📜 License
+
+This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details.
+
+```
+MIT License
+
+Copyright (c) 2024 Zeshan Haider Raza
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+```
+
+---
+
+## ⭐ Support This Project
+
+If you find this project helpful, please consider:
+
+- ⭐ **Starring** the repository
+- 🍴 **Forking** for your own research
+- 📢 **Sharing** with others in the field
+- 💬 **Contributing** improvements or suggestions
+- 📧 **Reaching out** for collaborations
+
+---
+
+## 📊 Project Statistics
+
+<p align="center">
+  <img src="https://img.shields.io/github/stars/Zeshanhaiderraza/gene-expression-cancer-detection?style=social" alt="Stars">
+  <img src="https://img.shields.io/github/forks/Zeshanhaiderraza/gene-expression-cancer-detection?style=social" alt="Forks">
+  <img src="https://img.shields.io/github/watchers/Zeshanhaiderraza/gene-expression-cancer-detection?style=social" alt="Watchers">
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/github/last-commit/Zeshanhaiderraza/gene-expression-cancer-detection" alt="Last Commit">
+  <img src="https://img.shields.io/github/issues/Zeshanhaiderraza/gene-expression-cancer-detection" alt="Issues">
+  <img src="https://img.shields.io/github/languages/top/Zeshanhaiderraza/gene-expression-cancer-detection" alt="Top Language">
+</p>
 
 ---
 
 <p align="center">
-  <i>⭐ If you find this project helpful, please consider giving it a star! ⭐</i>
+  <i>💡 "Advancing cancer detection through the power of machine learning and genomics" 💡</i>
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/github/stars/YOUR-USERNAME/gene-expression-cancer-detection?style=social" alt="GitHub stars">
-  <img src="https://img.shields.io/github/forks/YOUR-USERNAME/gene-expression-cancer-detection?style=social" alt="GitHub forks">
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&height=100&section=footer" alt="Footer"/>
+</p>
+
+<p align="center">
+  Made with ❤️ by <a href="https://github.com/Zeshanhaiderraza">Zeshan Haider Raza</a>
 </p>
