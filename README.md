@@ -489,7 +489,6 @@ Teesside University, Middlesbrough, UK
 ### Supervisor & Mentors
 - **Dr. Mengyuan Wang** - Course Leader, MSc Bioinformatics & Module Leader (Python for Bioinformatics/Data Analytics), Teesside University
 - **Dr. Cassy Ross** - Lecturer in Biomedical Science, Teesside University
-- **Dr. Faiz Rasool** - Assistant Director Research, UVAS, Lahore, Pakistan
 
 ### Institution
 - **Teesside University** - School of Health and Life Sciences (SHLS), Middlesbrough, UK
